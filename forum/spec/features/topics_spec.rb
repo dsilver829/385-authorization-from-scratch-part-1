@@ -32,6 +32,13 @@ describe "Topic request" do
     page.should_not have_content("Old Name")
   end
 
+  it "cannot edit topic as non-admin" do
+    log_in admin: false
+    topic = create(:topic)
+    visit edit_topic_path(topic)
+    page.should have_content("Not authorized")
+  end
+
   it "destroys topic as admin" do
     create(:topic, name: "Oops")
     log_in admin: true
