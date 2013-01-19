@@ -24,7 +24,7 @@ describe "Topic request" do
     log_in admin: true
     visit topics_path
     page.should have_content("Old Name")
-    click_on "edit_old_name"
+    click_on "edit-old-name"
     fill_in "Name", with: "New Name"
     click_on "Update Topic"
     page.should have_content("Updated topic")
@@ -32,8 +32,7 @@ describe "Topic request" do
     page.should_not have_content("Old Name")
   end
 
-  it "cannot edit topic as non-admin" do
-    log_in admin: false
+  it "cannot edit topic as guest" do
     topic = create(:topic)
     visit edit_topic_path(topic)
     page.should have_content("Not authorized")

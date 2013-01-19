@@ -6,7 +6,7 @@
   <%= "Sticky |" if topic.sticky? %>
   <%= pluralize topic.posts.size, "post" %>
   <% if allow? "topics", "edit" %>
-  | <%= link_to "Edit", edit_topic_path(topic) %>
+  | <%= link_to "Edit", edit_topic_path(topic), id: "edit-#{topic.name.downcase.gsub(/\s+/, '-')}" %>
   <% end %>
   <% if allow? "topics", "destroy" %>
   | <%= link_to "Destroy", topic_path(topic), method: :delete %>
